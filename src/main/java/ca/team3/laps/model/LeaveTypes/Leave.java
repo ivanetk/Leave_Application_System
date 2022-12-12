@@ -7,9 +7,6 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Leave {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     protected int granularity;
     protected int leaveDays;
 }
