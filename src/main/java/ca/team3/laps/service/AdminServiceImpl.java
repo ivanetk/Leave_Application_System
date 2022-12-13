@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import ca.team3.laps.exception.DuplicateException;
+import ca.team3.laps.exception.AdminException;
 import ca.team3.laps.model.Staff;
 import ca.team3.laps.model.CalendarificAPI.CalendarificAPIResponse;
 import ca.team3.laps.model.CalendarificAPI.Holiday;
-import ca.team3.laps.model.LeaveTypes.AnnualLeave;
 import ca.team3.laps.repository.CalendarRepo;
-import ca.team3.laps.repository.LeaveTypeRepo;
+import ca.team3.laps.repository.LeaveRepo;
 import ca.team3.laps.repository.StaffRepo;
 import reactor.core.publisher.Mono;
 
@@ -31,7 +30,7 @@ public class AdminServiceImpl implements AdminService {
     StaffRepo staffRepo;
 
     @Autowired
-    LeaveTypeRepo leaveTypeRepo;
+    LeaveRepo leaveRepo;
 
     @Autowired
     WebClient webClient;
@@ -65,20 +64,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Staff createStaff(Staff staff) throws DuplicateException {
+    public Staff createStaff(Staff staff) throws AdminException {
         if (staffRepo.existsByUsername(staff.getUsername())) {
-            throw new DuplicateException("Duplicate username. Please enter a different username");
+            throw new AdminException("Duplicate username. Please enter a different username");
         }
         return staffRepo.save(staff);
     }
-
-    @Override
-    public AnnualLeave createAnnualLeave(AnnualLeave annualLeave) throws DuplicateException {
-        String jobTitle = annualLeave.getJobTitle().toLowerCase();
-        if (leaveTypeRepo.existsById(jobTitle)) {
-            throw new DuplicateException("Entitlement for " + jobTitle + " already exists. Please edit instead.");
-        }
-        return leaveTypeRepo.save(annualLeave);
-    }
-
+    
 }

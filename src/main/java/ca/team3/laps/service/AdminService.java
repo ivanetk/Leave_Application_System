@@ -2,10 +2,9 @@ package ca.team3.laps.service;
 
 import java.util.List;
 
-import ca.team3.laps.exception.DuplicateException;
+import ca.team3.laps.exception.AdminException;
 import ca.team3.laps.model.Staff;
 import ca.team3.laps.model.CalendarificAPI.Holiday;
-import ca.team3.laps.model.LeaveTypes.AnnualLeave;
 
 public interface AdminService {
     /**
@@ -15,8 +14,6 @@ public interface AdminService {
      */
     List<Holiday> getHolidays(String year);
 
-    Staff createStaff(Staff staff) throws DuplicateException;
-
-    AnnualLeave createAnnualLeave(AnnualLeave annualLeave) throws DuplicateException;
+    Staff createStaff(Staff staff) throws AdminException;
 
 }

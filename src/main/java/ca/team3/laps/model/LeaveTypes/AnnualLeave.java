@@ -1,7 +1,9 @@
 package ca.team3.laps.model.LeaveTypes;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class AnnualLeave extends Leave {
-    @Id
+    @Column (nullable = false)
     private String jobTitle;
+
+    @JsonCreator
+    public AnnualLeave(float granularity, float leaveDays, String jobTitle) {
+        super(granularity, leaveDays, "annual");
+        this.jobTitle = jobTitle;
+    };
 }

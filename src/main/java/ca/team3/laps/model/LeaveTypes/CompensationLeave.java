@@ -1,9 +1,8 @@
 package ca.team3.laps.model.LeaveTypes;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class CompensationLeave extends Leave {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private double overtimeRatio;
+
+    private float overtimeRatio;
+
+    @JsonCreator
+    public CompensationLeave(long id, float granularity, float overtimeRatio) {
+        super(granularity, 0, "compensation");
+        this.overtimeRatio = overtimeRatio;
+    }
 }

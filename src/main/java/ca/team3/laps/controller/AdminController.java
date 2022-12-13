@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.team3.laps.exception.DuplicateException;
+import ca.team3.laps.exception.AdminException;
 import ca.team3.laps.model.Staff;
 import ca.team3.laps.model.CalendarificAPI.Holiday;
-import ca.team3.laps.model.LeaveTypes.AnnualLeave;
 import ca.team3.laps.service.AdminService;
 
 @RestController
@@ -24,6 +23,7 @@ public class AdminController {
 
     @Autowired
     AdminService adminService;
+
 
     /** GET request to retrieve all public holidays of a calendar year. */
     @GetMapping("/getholidays")
@@ -42,25 +42,12 @@ public class AdminController {
         try {
             Staff createdStaff = adminService.createStaff(staff);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdStaff);
-        } catch (DuplicateException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (AdminException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-
-
-    //POST/PUT requests to manage leave types
-    @PostMapping("/leave/createannual")
-    public ResponseEntity createAnnualLeaveEntitlement(AnnualLeave AnnualLeave) {
-        try {
-            AnnualLeave createdAnnualLeave = adminService.createAnnualLeave(AnnualLeave);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdAnnualLeave);
-        } catch (DuplicateException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-    }
-
 }
+
+  
