@@ -5,7 +5,7 @@ import java.util.List;
 import ca.team3.laps.exception.AdminException;
 import ca.team3.laps.model.LeaveTypes.AnnualLeave;
 import ca.team3.laps.model.LeaveTypes.CompensationLeave;
-import ca.team3.laps.model.LeaveTypes.Leave;
+import ca.team3.laps.model.LeaveTypes.LeaveType;
 import ca.team3.laps.model.LeaveTypes.MedicalLeave;
 
 public interface AdminLeaveService {
@@ -30,6 +30,6 @@ public interface AdminLeaveService {
 
     List<AnnualLeave> getAnnualLeaveEntitlements();
 
-    List<Leave> getAllLeaveEntitlements();
+    List<LeaveType> getAllLeaveEntitlements();
 
 }

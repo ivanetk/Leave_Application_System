@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @MappedSuperclass
 @Data
 @NoArgsConstructor
-public abstract class Leave {
+public abstract class LeaveType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -19,7 +19,7 @@ public abstract class Leave {
     private float leaveDays;
     protected String type;
     
-    public Leave(float granularity, float leaveDays, String type) {
+    public LeaveType(float granularity, float leaveDays, String type) {
         this.granularity = granularity;
         this.leaveDays = leaveDays;
         this.type = type;

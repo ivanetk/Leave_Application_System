@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class AnnualLeave extends Leave {
+public class AnnualLeave extends LeaveType {
     @Column (nullable = false)
     private String jobTitle;
 

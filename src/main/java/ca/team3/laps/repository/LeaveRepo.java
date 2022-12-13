@@ -8,11 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import ca.team3.laps.model.LeaveTypes.AnnualLeave;
 import ca.team3.laps.model.LeaveTypes.CompensationLeave;
-import ca.team3.laps.model.LeaveTypes.Leave;
+import ca.team3.laps.model.LeaveTypes.LeaveType;
 import ca.team3.laps.model.LeaveTypes.MedicalLeave;
 
 
-public interface LeaveRepo extends JpaRepository<Leave, Long> {
+public interface LeaveRepo extends JpaRepository<LeaveType, Long> {
     
     @Query("SELECT a "
     + "FROM AnnualLeave a "

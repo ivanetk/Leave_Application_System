@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class CompensationLeave extends Leave {
+public class CompensationLeave extends LeaveType {
 
     private float overtimeRatio;
 

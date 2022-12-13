@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.team3.laps.exception.AdminException;
-import ca.team3.laps.model.Staff;
 import ca.team3.laps.model.CalendarificAPI.Holiday;
 import ca.team3.laps.service.AdminService;
 
@@ -36,18 +35,18 @@ public class AdminController {
         }
     }
 
-    /** POST request to insert a new staff record. */
-    @PostMapping("/staff/create")
-    public ResponseEntity createStaff(@RequestBody Staff staff) {
-        try {
-            Staff createdStaff = adminService.createStaff(staff);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdStaff);
-        } catch (AdminException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-    }
+    // /** POST request to insert a new staff record. */
+    // @PostMapping("/staff/create")
+    // public ResponseEntity createStaff(@RequestBody Staff staff) {
+    //     try {
+    //         Staff createdStaff = adminService.createStaff(staff);
+    //         return ResponseEntity.status(HttpStatus.CREATED).body(createdStaff);
+    //     } catch (AdminException e) {
+    //         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    //     } catch (Exception e) {
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    //     }
+    // }
 }
 
   

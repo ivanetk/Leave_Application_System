@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ca.team3.laps.exception.AdminException;
 import ca.team3.laps.model.LeaveTypes.AnnualLeave;
 import ca.team3.laps.model.LeaveTypes.CompensationLeave;
-import ca.team3.laps.model.LeaveTypes.Leave;
+import ca.team3.laps.model.LeaveTypes.LeaveType;
 import ca.team3.laps.model.LeaveTypes.MedicalLeave;
 import ca.team3.laps.repository.LeaveRepo;
 import ca.team3.laps.repository.StaffRepo;
@@ -114,8 +114,8 @@ public class AdminLeaveServiceImpl implements AdminLeaveService {
     }
 
     @Override
-    public List<Leave> getAllLeaveEntitlements() {
-        List<Leave> entitlements = new ArrayList<Leave>();
+    public List<LeaveType> getAllLeaveEntitlements() {
+        List<LeaveType> entitlements = new ArrayList<LeaveType>();
         getAnnualLeaveEntitlements().forEach(e -> entitlements.add(e));
         if (getMedicalLeaveEntitlement() != null) {
             entitlements.add(getMedicalLeaveEntitlement());

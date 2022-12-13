@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class MedicalLeave extends Leave {
+public class MedicalLeave extends LeaveType {
     @JsonCreator
     public MedicalLeave(long id, float granularity, float leaveDays) {
         super(granularity, leaveDays, "medical");
