@@ -7,15 +7,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import ca.team3.laps.exception.AdminException;
+import ca.team3.laps.exception.ErrorJson;
 import ca.team3.laps.model.Staff;
 import ca.team3.laps.model.CalendarificAPI.CalendarificAPIResponse;
 import ca.team3.laps.model.CalendarificAPI.Holiday;
 import ca.team3.laps.repository.CalendarRepo;
-import ca.team3.laps.repository.LeaveRepo;
+import ca.team3.laps.repository.LeaveTypeRepo;
 import ca.team3.laps.repository.StaffRepo;
 import reactor.core.publisher.Mono;
 
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -30,7 +32,7 @@ public class AdminServiceImpl implements AdminService {
     StaffRepo staffRepo;
 
     @Autowired
-    LeaveRepo leaveRepo;
+    LeaveTypeRepo leaveRepo;
 
     @Autowired
     WebClient webClient;
@@ -45,7 +47,9 @@ public class AdminServiceImpl implements AdminService {
         return holidays;
     }
 
-    /**  Use Calendarific API to retrieve public holidays and persist to database. **/
+    /**
+     * Use Calendarific API to retrieve public holidays and persist to database.
+     **/
     private List<Holiday> getHolidaysFromCalendarificAPI(String year) {
         String key = env.getProperty("calenderific.key");
         String country = env.getProperty("calenderific.country");
@@ -66,9 +70,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Staff createStaff(Staff staff) throws AdminException {
         if (staffRepo.existsByUsername(staff.getUsername())) {
-            throw new AdminException("Duplicate username. Please enter a different username");
+            throw new AdminException(
+                    new ErrorJson(HttpStatus.BAD_REQUEST.value(),
+                            "Duplicate username. Please enter a different username"));
         }
         return staffRepo.save(staff);
     }
-    
+
 }

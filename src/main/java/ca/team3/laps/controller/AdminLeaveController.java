@@ -28,85 +28,86 @@ public class AdminLeaveController {
     AdminLeaveService adminLeaveService;
 
     // POST/PUT/DELETE requests to manage leave types
-    @PostMapping("/createannual")
+    @PostMapping("/annual")
     public ResponseEntity createAnnualLeaveEntitlement(@RequestBody AnnualLeave annualLeave) {
         try {
             AnnualLeave createdAnnualLeave = adminLeaveService.createAnnualLeaveEntitlement(annualLeave);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdAnnualLeave);
         } catch (AdminException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    @PutMapping("/modifyannual")
+    @PutMapping("/annual")
     public ResponseEntity modifyAnnualLeaveEntitleMent(@RequestBody AnnualLeave annualLeave) {
         try {
             AnnualLeave modifiedAnnualLeave = adminLeaveService.modifyAnnualLeaveEntitlement(annualLeave);
             return ResponseEntity.status(HttpStatus.OK).body(modifiedAnnualLeave);
         } catch (AdminException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    @DeleteMapping("/deleteannual")
+    @DeleteMapping("/annual")
     public ResponseEntity deleteAnnualLeaveEntitleMent(@RequestBody AnnualLeave annualLeave) {
         try {
             adminLeaveService.deleteAnnualLeaveEntitlement(annualLeave);
-            return ResponseEntity.status(HttpStatus.OK).body("Annual Leave Entitlement has been deleted successfully");
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Annual Leave Entitlement has been deleted successfully");
         } catch (AdminException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    @PostMapping("/createmedical")
+    @PostMapping("/medical")
     public ResponseEntity createMedicalLeaveEntitlement(@RequestBody MedicalLeave medicalLeave) {
         try {
             MedicalLeave createdMedicalLeave = adminLeaveService.createMedicalLeaveEntitlement(medicalLeave);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdMedicalLeave);
         } catch (AdminException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    @PutMapping("/modifymedical")
+    @PutMapping("/medical")
     public ResponseEntity modifyMedicalLeaveEntitlement(@RequestBody MedicalLeave medicalLeave) {
         try {
             MedicalLeave modifiedMedicalLeaveEntitlement = adminLeaveService
                     .modifyMedicalLeaveEntitlement(medicalLeave);
             return ResponseEntity.status(HttpStatus.OK).body(modifiedMedicalLeaveEntitlement);
         } catch (AdminException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    @PostMapping("/createcomp")
+    @PostMapping("/comp")
     public ResponseEntity createCompLeaveEntitlement(@RequestBody CompensationLeave compensationLeave) {
         try {
             CompensationLeave createdCompLeave = adminLeaveService.createCompensationLeave(compensationLeave);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdCompLeave);
         } catch (AdminException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
-    @PutMapping("/modifycomp")
+
+    @PutMapping("/comp")
     public ResponseEntity modifyCompLeaveEntitlement(@RequestBody CompensationLeave compensationLeave) {
         try {
             CompensationLeave modifiedCompLeave = adminLeaveService.modifyCompensationLeave(compensationLeave);
             return ResponseEntity.status(HttpStatus.OK).body(modifiedCompLeave);
         } catch (AdminException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }

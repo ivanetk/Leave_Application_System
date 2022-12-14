@@ -17,4 +17,6 @@ public interface StaffRepo extends JpaRepository<Staff, Integer> {
     public List<Staff> findByUsername(@Param("username") String username);
 
     public boolean existsByUsername(String username);
+
+    public Staff findByStfId(long id);
 }

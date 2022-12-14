@@ -1,7 +1,13 @@
 package ca.team3.laps.exception;
 
 public class AdminException extends Exception {
-    public AdminException(String message) {
-        super(message);
+    private ErrorJson error;
+
+    public AdminException(ErrorJson error) {
+        this.error = error;
+    }
+
+    public ErrorJson getError() {
+        return error;
     }
 }

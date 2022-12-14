@@ -41,7 +41,7 @@ public class Leave {
 
     @ManyToOne
     @JoinColumn(name="staff_id")
-    private Staff staff;
+    private Staff leave;
 
     public Leave(String type,float startDate,float endDate,int period,
         String status,String reason, String work){ 
