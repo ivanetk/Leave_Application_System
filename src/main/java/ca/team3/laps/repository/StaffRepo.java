@@ -19,4 +19,8 @@ public interface StaffRepo extends JpaRepository<Staff, Integer> {
     public boolean existsByUsername(String username);
 
     public Staff findByStfId(long id);
+
+    public int countByUsernameContaining(String username);
+
+    public int countByUsername(String username);
 }

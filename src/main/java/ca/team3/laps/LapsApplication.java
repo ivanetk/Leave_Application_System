@@ -30,6 +30,8 @@ public class LapsApplication {
 		return args -> {
 			staffRepository.save(new Staff(1, null, "Javis", "password", 3, "alrigh", "javis", "john",
 					true, "Javis@gmail.com", 5, 10, 1));
+			staffRepository.save(new Staff(2, null, "Goh", "password", 3, "alrigh", "goh", "john",
+					true, "goh@gmail.com", 5, 10, 1));
 		};
 	}
 }

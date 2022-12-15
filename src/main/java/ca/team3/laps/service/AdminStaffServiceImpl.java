@@ -63,14 +63,23 @@ public class AdminStaffServiceImpl implements AdminStaffService {
         String firstName = staff.getFirstname();
         String lastName = staff.getLastname();
         if (firstName == null || firstName.isEmpty()) {
-            return lastName;
+            return lastName + countUsernameContaining(lastName);
         } else if (lastName == null || lastName.isEmpty()) {
-            return firstName;
+            return firstName + countUsernameContaining(firstName);
         } else {
-            return firstName + "." + lastName;
+            String username = firstName + "." + lastName;
+            return username + countUsernameContaining(username);
         }
     }
 
+    private String countUsernameContaining(String name) {
+        int count = staffRepo.countByUsernameContaining(name);
+        if (count == 0) {
+            return "";
+        }
+        return Integer.toString(count);
+    }
+    
     private String generatePassword() {
         Random rnd = new Random();
         char[] password = new char[8];

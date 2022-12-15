@@ -3,6 +3,7 @@ package ca.team3.laps.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +28,8 @@ public class AdminStaffController {
     @GetMapping("/staff")
     public ResponseEntity getAllStaff() {
         List<Staff> staffList = adminStaffService.findAllStaff();
+        HttpHeaders reactJSHeader = new HttpHeaders();
+        reactJSHeader.set("Access-Control-Allow-Origin", "http://localhost:8081");
         return ResponseEntity.status(HttpStatus.OK).body(staffList);
     }
 
