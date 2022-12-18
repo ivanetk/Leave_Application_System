@@ -31,19 +31,6 @@ public class AdminController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    // /** POST request to insert a new staff record. */
-    // @PostMapping("/staff/create")
-    // public ResponseEntity createStaff(@RequestBody Staff staff) {
-    //     try {
-    //         Staff createdStaff = adminService.createStaff(staff);
-    //         return ResponseEntity.status(HttpStatus.CREATED).body(createdStaff);
-    //     } catch (AdminException e) {
-    //         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-    //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-    //     }
-    // }
 }
 
   

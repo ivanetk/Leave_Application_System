@@ -26,8 +26,8 @@ public class AdminStaffController {
     AdminStaffService adminStaffService;
 
     @GetMapping("/staff")
-    public ResponseEntity getAllStaff() {
-        List<Staff> staffList = adminStaffService.findAllStaff();
+    public ResponseEntity getAllActiveStaff() {
+        List<Staff> staffList = adminStaffService.findAllActiveStaff();
         HttpHeaders reactJSHeader = new HttpHeaders();
         reactJSHeader.set("Access-Control-Allow-Origin", "http://localhost:8081");
         return ResponseEntity.status(HttpStatus.OK).body(staffList);

@@ -21,6 +21,7 @@ import javax.persistence.JoinColumn;
 
 
 @Entity
+@JsonIgnoreProperties({"password"})
 public class Staff {
 
 
@@ -128,11 +129,11 @@ public class Staff {
         this.mediLeave = mediLeave;
     }
 
-    public int getCompLeave() {
+    public float getCompLeave() {
         return compLeave;
     }
 
-    public void setCompLeave(int compLeave) {
+    public void setCompLeave(float compLeave) {
         this.compLeave = compLeave;
     }
 
@@ -169,7 +170,7 @@ public class Staff {
     private int mediLeave;
 
 	@Column(name="comp_requested_entitlement", nullable = false)
-    private int compLeave;
+    private float compLeave;
 
     @OneToMany(mappedBy = "leave")
 	private List<Leave> staffLeave;
@@ -186,7 +187,7 @@ public class Staff {
     
     public Staff(long stfId, String managerId, String username, String password, int roleId, String title,
             String firstname, String lastname, boolean status, String email, int anuLeave, int mediLeave,
-            int compLeave) {
+            float compLeave) {
         this.stfId = stfId;
         this.managerId = managerId;
         this.username = username;

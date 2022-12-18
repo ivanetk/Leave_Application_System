@@ -6,6 +6,7 @@ import ca.team3.laps.model.Staff;
 
 public interface AdminStaffService {
     List<Staff> findAllStaff();
+    List<Staff> findAllActiveStaff();
     Staff findStaffById(long id);
     void createStaff(Staff staff);
     void modifyStaff(Staff staff);

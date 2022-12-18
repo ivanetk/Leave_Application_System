@@ -16,12 +16,6 @@ public class LapsApplication {
 		SpringApplication.run(LapsApplication.class, args);
 	}
 
-	// @Bean
-	// public WebClient webClient(WebClient.Builder webClientBuilder) {
-	// return webClientBuilder
-	// .baseUrl("https://holidayapi.com/v1/holidays")
-	// .build();
-	// }
 	@Autowired
 	StaffRepo staffRepository;
 
