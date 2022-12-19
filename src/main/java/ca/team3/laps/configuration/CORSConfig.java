@@ -16,7 +16,9 @@ public class CORSConfig {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/api/**")
 						.allowedOrigins("http://localhost:8081")
-						.allowedMethods("*");
+						.allowCredentials(true)
+						.allowedMethods("*")
+						.allowedHeaders("*");
 			}
 		};
 	}

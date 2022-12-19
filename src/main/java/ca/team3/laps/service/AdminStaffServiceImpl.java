@@ -54,6 +54,7 @@ public class AdminStaffServiceImpl implements AdminStaffService {
         staffRec.setCompLeave(staff.getCompLeave());
         staffRec.setStatus(staff.isStatus());
         staffRec.setEmail(staff.getEmail());
+        staffRec.setManagerId(staff.getManagerId());
         staffRepo.save(staffRec);
     }
 

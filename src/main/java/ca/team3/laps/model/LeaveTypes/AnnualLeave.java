@@ -19,6 +19,6 @@ public class AnnualLeave extends LeaveType {
 
     public AnnualLeave(float granularity, float leaveDays, String jobTitle) {
         super(granularity, leaveDays);
-        this.jobTitle = jobTitle;
+        this.jobTitle = jobTitle.toLowerCase();
     };
 }
